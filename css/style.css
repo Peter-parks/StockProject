@@ -1,0 +1,17 @@
+.container {
+    width: 500px;
+    height: 500px;
+    border: 5px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contador {
+    margin-top: 25px;
+}
+
+.contador h3 {
+    padding-top: 25px;
+}
