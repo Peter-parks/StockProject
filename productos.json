@@ -1,0 +1,38 @@
+[
+    {
+        "precio": 5600,
+        "id": 1,
+        "producto": "Proyectores Prolite ( game intermedia)",
+        "thumbnailUrl": "https://loremflickr.com/640/360"
+    },
+    {
+        "precio": 3500,
+        "id": 2,
+        "producto": "Proyectores High-Bay",
+        "thumbnailUrl": "https://picsum.photos/640/360"
+    },
+    {
+        "precio": 2100,
+        "id": 3,
+        "producto": "Luminaria Publica",
+        "thumbnailUrl": "https://picsum.photos/640/360"
+    },
+    {
+        "precio": 550,
+        "id": 4,
+        "producto": "Luces de Emergencia",
+        "thumbnailUrl": "https://loremflickr.com/640/360"
+    },
+    {
+        "precio": 1100,
+        "id": 5,
+        "producto": "Listones bajo alacena",
+        "thumbnailUrl": "https://picsum.photos/640/360"
+    },
+    {
+        "precio": 2150,
+        "id": 6,
+        "producto": "Paneles",
+        "thumbnailUrl": "https://picsum.photos/640/360"
+    }
+]

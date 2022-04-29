@@ -17,16 +17,16 @@ function nuevoProducto(nombre, precio, wats) {
     this.wats = wats
 }
 
-do {
+/* do {
     let usuario = new nuevoUsuario(prompt("ingrese nombre de usuario"), prompt("ingrese contraseña"))
     usuarios.push(usuario)
     respuesta = prompt("crear o seguir creando")
 }
-while (respuesta === "seguir")
+while (respuesta === "seguir") */
 
 
 
-usuarios.forEach(usuario => {
+/* usuarios.forEach(usuario => {
     client = usuario.usuario
     pass = usuario.contraseña
     console.log(client, pass)
@@ -43,10 +43,10 @@ while (preguntaUsuario != client || preguntaPass != pass) {
     preguntaUsuario = prompt("ingrese el Usuario")
     preguntaPass = prompt("ingrese su contraseña")
 
-}
+} */
 
 
-if (preguntaUsuario == client && preguntaPass == pass) {
+/* if (preguntaUsuario == client && preguntaPass == pass) {
 
     let entrar = "yes"
     let salir = "out"
@@ -61,7 +61,7 @@ if (preguntaUsuario == client && preguntaPass == pass) {
         inicio = prompt("Quieres cargar mas productos (yes / out)")
     }
 
-}
+} */
 
 
 
@@ -80,13 +80,15 @@ container.addEventListener('click', e => {
     if (e.target.classList.contains('btn_A')) {
 
         contador++
-        span.textContent = contador
+
     }
 
     if (e.target.classList.contains('btn_D')) {
 
         contador--
-        span.textContent = contador
+
     }
+
+    span.textContent = contador
     e.stopPropagation()
 })
