@@ -12,7 +12,7 @@ const templateCarrito = document.getElementById('template-carrito').content
 const fragment = document.createDocumentFragment()
 
 
-
+/* Eventos */
 document.addEventListener('DOMContentLoaded', () => {
 
     fetchData()
@@ -21,7 +21,7 @@ cards.addEventListener('click', e => {
     addStock(e)
 })
 
-
+/* fetch ---- productos.Json */
 
 const fetchData = async () => {
     try {
@@ -33,6 +33,7 @@ const fetchData = async () => {
     }
 }
 
+/* funcion , pinta la info de productos.json  */
 const pintarCars = data => {
     data.forEach(producto => {
         templateCard.querySelector('h5').textContent = producto.producto
@@ -71,6 +72,7 @@ const setStock = objeto => {
         producto.cantidad = stockProductos[producto.id].cantidad + 1
     }
 
+    /* convierte el objeto en Array */
     stockProductos[producto.id] = { ...producto }
     pintarStock()
 }
