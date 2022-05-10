@@ -28,6 +28,8 @@
     </div>
 
 
+
+
     <section class="container">
         <table class="table">
             <thead>
@@ -50,6 +52,10 @@
 
     </section>
 
+
+
+    <!-- Templates  -->
+
     <template id="template-card">
         <div class="col-2 mb-2 col-sm-4">
             <div class="card">
@@ -65,7 +71,18 @@
     </template>
 
 
-    <template id="template-carrito">
+    <template id="template-footer">
+        <th scope="row" colspan="2">Total productos</th>
+        <td>10</td>
+        <td>
+            <button class="btn btn-danger btn-sm" id="vaciar-carrito">
+                vaciar todo
+            </button>
+        </td>
+        <td class="font-weight-bold">$ <span>5000</span></td>
+    </template>
+
+    <template id="template-stock">
         <tr>
             <th scope="row">id</th>
             <td></td>
@@ -82,19 +99,7 @@
         </tr>
     </template>
 
-
-    <template id="template-footer">
-        <th scope="row" colspan="2">Total productos</th>
-        <td>10</td>
-        <td>
-            <button class="btn btn-danger btn-sm" id="vaciar-carrito">
-                vaciar todo
-            </button>
-        </td>
-        <td class="font-weight-bold">$ <span>5000</span></td>
-    </template>
-
-    <main class="container ">
+    <!--  <main class="container ">
         <h2>Contador de productos</h2>
 
         <div class="contador">
@@ -102,7 +107,7 @@
             <button class="btn_D btn-primary">Retirar</button>
             <h3>Stock = <span id="span">0</span></h3>
         </div>
-    </main>
+    </main> -->
 
 
 
@@ -113,11 +118,9 @@
 
 
 
-    <script src="./stock.js"></script>
 
-    <!-- libreria Jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- libreria Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
     <!-- Bootstrap -->
@@ -130,6 +133,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
+
+    <script src="./stock.js"></script>s
 
 </body>
 

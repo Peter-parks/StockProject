@@ -1,16 +1,15 @@
-let stockProductos = {
-
-};
-
 
 const cards = document.getElementById('cards')
 const items = document.getElementById('items')
 const footer = document.getElementById('footer')
 const templateCard = document.getElementById('template-card').content
 const templateFooter = document.getElementById('template-footer').content
-const templateCarrito = document.getElementById('template-carrito').content
+const templateStock = document.getElementById('template-stock').content
 const fragment = document.createDocumentFragment()
 
+let stockProductos = {
+
+};
 
 /* Eventos */
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 cards.addEventListener('click', e => {
     addStock(e)
+    swal({
+        title: "Producto Agregado",
+        icon: "success",
+    });
 })
 
 /* fetch ---- productos.Json */
@@ -80,15 +83,26 @@ const setStock = objeto => {
 const pintarStock = () => {
     items.innerHTML = ""
     Object.values(stockProductos).forEach(producto => {
-        templateCarrito.querySelector('th').textContent = producto.id
-        templateCarrito.querySelectorAll('td')[0].textContent = producto.producto
-        templateCarrito.querySelectorAll('td')[1].textContent = producto.cantidad
-        templateCarrito.querySelector('.btn-info').dataset.id = producto.id
-        templateCarrito.querySelector('span').textContent = producto.cantidad * producto.precio
+        templateStock.querySelector('th').textContent = producto.id
+        templateStock.querySelectorAll('td')[0].textContent = producto.producto
+        templateStock.querySelectorAll('td')[1].textContent = producto.cantidad
+        templateStock.querySelector('.btn-info').dataset.id = producto.id
+        templateStock.querySelector('.btn-danger').dataset.id = producto.id
+        templateStock.querySelector('span').textContent = producto.cantidad * producto.precio
 
-        const clone = templateCarrito.cloneNode(true)
+        const clone = templateStock.cloneNode(true)
         fragment.appendChild(clone)
     })
 
     items.appendChild(fragment)
+
+    pintarfooter()
 }
+
+const pintarfooter = () => {
+    footer.innerHTML = ""
+    if (Object.keys($stockProductos).
+
+    }
+
+
