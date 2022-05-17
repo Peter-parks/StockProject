@@ -15,13 +15,20 @@ let stockProductos = {
 document.addEventListener('DOMContentLoaded', () => {
 
     fetchData()
+    if (localStorage.getItem('stock')) {
+        stockProductos = JSON.parse(localStorage.getItem('stock'))
+        pintarStock()
+    }
+
+
 })
 cards.addEventListener('click', e => {
     addStock(e)
-    swal({
-        title: "Producto Agregado",
-        icon: "success",
-    });
+
+})
+
+items.addEventListener('click', e => {
+    btnSum(e)
 })
 
 /* fetch ---- productos.Json */
@@ -30,18 +37,18 @@ const fetchData = async () => {
     try {
         const res = await fetch('productos.json')
         const data = await res.json()
-        pintarCars(data)
+        pintarCard(data)
     } catch (error) {
         console.log(error)
     }
 }
 
 /* funcion , pinta la info de productos.json  */
-const pintarCars = data => {
+const pintarCard = data => {
     data.forEach(producto => {
         templateCard.querySelector('h5').textContent = producto.producto
         templateCard.querySelector('p').textContent = producto.precio
-        templateCard.querySelector('img').setAttribute("src", producto.thumbnailUrl)
+        templateCard.querySelector('img').setAttribute("src", producto.img)
         /* atributo para vinvular boton al producto(ID) */
         templateCard.querySelector('.btn-dark').dataset.id = producto.id
 
@@ -56,6 +63,10 @@ const addStock = e => {
     if (e.target.classList.contains('btn-dark')) {
 
         setStock(e.target.parentElement)
+        swal({
+            title: "Producto Agregado",
+            icon: "success",
+        });
 
     }
     e.stopPropagation()
@@ -81,13 +92,13 @@ const setStock = objeto => {
 }
 
 const pintarStock = () => {
-    items.innerHTML = ""
+    items.innerHTML = ``
     Object.values(stockProductos).forEach(producto => {
         templateStock.querySelector('th').textContent = producto.id
         templateStock.querySelectorAll('td')[0].textContent = producto.producto
         templateStock.querySelectorAll('td')[1].textContent = producto.cantidad
-        templateStock.querySelector('.btn-info').dataset.id = producto.id
-        templateStock.querySelector('.btn-danger').dataset.id = producto.id
+        templateStock.querySelector('.btn-primary').dataset.id = producto.id
+        templateStock.querySelector('.btn-secondary').dataset.id = producto.id
         templateStock.querySelector('span').textContent = producto.cantidad * producto.precio
 
         const clone = templateStock.cloneNode(true)
@@ -96,13 +107,70 @@ const pintarStock = () => {
 
     items.appendChild(fragment)
 
-    pintarfooter()
+    pintarFooter()
+
+    localStorage.setItem('stock', JSON.stringify(stockProductos))
 }
 
-const pintarfooter = () => {
-    footer.innerHTML = ""
-    if (Object.keys($stockProductos).
+const pintarFooter = () => {
+    footer.innerHTML = ``
+    if (Object.keys(stockProductos).length === 0) {
+        footer.innerHTML = `- comience a incorporar Productos!`
+
+        return
+    }
+
+    const nCantidad = Object.values(stockProductos).reduce((acumulacion, { cantidad }) => acumulacion + cantidad, 0)
+
+    const nPrecio = Object.values(stockProductos).reduce((acumulador, { cantidad, precio }) => acumulador + cantidad * precio, 0)
+
+    templateFooter.querySelectorAll('td')[0].textContent = nCantidad
+    templateFooter.querySelector('span').textContent = nPrecio
+
+    const clone = templateFooter.cloneNode(true)
+    fragment.appendChild(clone)
+    footer.appendChild(fragment)
+
+    const btnClear = document.getElementById('vaciar-carrito')
+
+    btnClear.addEventListener('click', () => {
+        stockProductos = {}
+        pintarStock()
+    })
+}
+
+const btnSum = e => {
+
+    if (e.target.classList.contains('btn-primary')) {
+
+        const producto = stockProductos[e.target.dataset.id]
+        producto.cantidad = stockProductos[e.target.dataset.id].cantidad + 1
+        stockProductos[e.target.dataset.id] = { ...producto }
+
+        pintarStock()
+    }
+
+    if (e.target.classList.contains('btn-secondary')) {
+        const producto = stockProductos[e.target.dataset.id]
+        producto.cantidad = stockProductos[e.target.dataset.id].cantidad - 1
+        stockProductos[e.target.dataset.id] = { ...producto }
+
+        if (producto.cantidad === 0) {
+            delete stockProductos[e.target.dataset.id]
+        }
+        pintarStock()
 
     }
+
+    e.stopPropagation()
+
+
+}
+
+
+
+
+
+
 
 
