@@ -163,8 +163,6 @@ const btnSum = e => {
     }
 
     e.stopPropagation()
-
-
 }
 
 
